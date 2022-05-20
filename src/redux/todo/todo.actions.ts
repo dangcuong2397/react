@@ -1,16 +1,9 @@
-import { ADD_TODO, EDIT_TODO, TOGGLE_COMPLETE, REMOVE_TODO } from './action-types';
+import { ADD_TODO, TOGGLE_COMPLETE, REMOVE_TODO } from './action-types';
 
 export function addTodo(name: string, expiresAt?: Date) {
   return {
     type: ADD_TODO,
     payload: { name, expiresAt, createdAt: new Date(), updatedAt: new Date(), isCompleted: false },
-  };
-}
-
-export function editTodo(id: number, name?: string, expiresAt?: Date) {
-  return {
-    type: EDIT_TODO,
-    payload: { id, name, expiresAt, updatedAt: new Date() },
   };
 }
 

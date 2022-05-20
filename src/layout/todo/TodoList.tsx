@@ -1,10 +1,9 @@
-import TodoItem from './TodoItem/TodoItem';
+import TodoItem from './TodoItem';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux/store';
-import AddTodo from './AddTodo';
 import React from 'react';
 
-const TodoList: React.FC = props => {
+const TodoList: React.FC = () => {
   const todoItems = useSelector((state: AppState) => state.todoModule.todos);
 
   return (

@@ -1,9 +1,15 @@
 import React from 'react';
-import { ITodoItem } from '../types';
-import css from 'classnames';
-import { addTodo, removeTodo, toggleCompleted } from '../../../redux/todo/todo.actions';
+import { removeTodo, toggleCompleted } from '../../redux/todo/todo.actions';
 import { useDispatch } from 'react-redux';
 
+interface ITodoItem {
+  name: string;
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  isCompleted: boolean;
+  expiresAt?: Date;
+}
 interface TodoItemProps {
   item: ITodoItem;
 }

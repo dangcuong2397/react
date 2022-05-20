@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../redux/todo/todo.actions';
 
@@ -11,7 +11,7 @@ const AddTodo = () => {
     setInput('');
   }
 
-  function onchange(e: any) {
+  function onchange(e: ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
   }
 
