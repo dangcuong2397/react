@@ -1,6 +1,5 @@
-import React from 'react';
-import { removeTodo, toggleCompleted } from '../../redux/todo/todo.actions';
-import { useDispatch } from 'react-redux';
+import React, { useContext } from 'react';
+import { SocketContext } from '../../context/socket';
 
 interface ITodoItem {
   name: string;
@@ -15,12 +14,12 @@ interface TodoItemProps {
 }
 
 const TodoItem: React.FC<TodoItemProps> = props => {
-  const dispatch = useDispatch();
+  const socket = useContext(SocketContext);
   function onToggleComplete(id: number) {
-    dispatch(toggleCompleted(id));
+    socket.emit('EDIT_TODO', { ...props.item, isCompleted: !props.item.isCompleted });
   }
   function onDelete(id: number) {
-    dispatch(removeTodo(id));
+    socket.emit('REMOVE_TODO', id);
   }
   return (
     <div aria-disabled={props.item.isCompleted}>

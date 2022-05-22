@@ -1,4 +1,4 @@
-import { TodoState, TodoActionTypes, ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE } from './action-types';
+import { TodoState, TodoActionTypes, ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, EDIT_TODO } from './action-types';
 
 const initialState: TodoState = {
   todos: [],
@@ -43,6 +43,21 @@ export function todoReducer(state = initialState, action: TodoActionTypes): Todo
           todos.push({ ...todoItem });
         } else {
           todos = [{ ...todoItem }, ...todos];
+        }
+        return { todos };
+      }
+      return { ...state };
+    }
+    case EDIT_TODO: {
+      const { id } = action.payload;
+      const todoIndex = state.todos.findIndex(todo => todo.id === id);
+      if (todoIndex !== -1) {
+        let todos = [...state.todos];
+        todos.splice(todoIndex, 1);
+        if (action.payload.isCompleted) {
+          todos.push({ ...action.payload });
+        } else {
+          todos = [{ ...action.payload }, ...todos];
         }
         return { todos };
       }

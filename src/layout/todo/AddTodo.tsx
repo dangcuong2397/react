@@ -1,13 +1,19 @@
-import React, { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../../redux/todo/todo.actions';
+import React, { ChangeEvent, useContext, useState } from 'react';
+import { SocketContext } from '../../context/socket';
 
+interface ITodoItem {
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  isCompleted: boolean;
+  expiresAt?: Date;
+}
 const AddTodo = () => {
   const [input, setInput] = useState('');
-  const dispatch = useDispatch();
-
+  const socket = useContext(SocketContext);
   function onSubmit() {
-    dispatch(addTodo(input));
+    const payload: ITodoItem = { name: input, createdAt: new Date(), updatedAt: new Date(), isCompleted: false };
+    socket.emit('ADD_TODO', payload);
     setInput('');
   }
 

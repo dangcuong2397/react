@@ -12,6 +12,7 @@ export interface TodoState {
 export const ADD_TODO = 'ADD_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
+export const EDIT_TODO = 'EDIT_TODO';
 interface AddTodo {
   type: typeof ADD_TODO;
   payload: {
@@ -31,4 +32,8 @@ interface ToggleComplete {
     id: number;
   };
 }
-export type TodoActionTypes = AddTodo | RemoveTodo | ToggleComplete;
+interface EditTodo {
+  type: typeof EDIT_TODO;
+  payload: ITodo;
+}
+export type TodoActionTypes = AddTodo | RemoveTodo | ToggleComplete | EditTodo;
