@@ -15,7 +15,7 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = props => {
   const socket = useContext(SocketContext);
-  function onToggleComplete(id: number) {
+  function onToggleComplete() {
     socket.emit('EDIT_TODO', { ...props.item, isCompleted: !props.item.isCompleted });
   }
   function onDelete(id: number) {
@@ -29,7 +29,7 @@ const TodoItem: React.FC<TodoItemProps> = props => {
       </div>
 
       <div>
-        <button style={{ marginRight: 8 }} onClick={() => onToggleComplete(props.item.id)}>
+        <button style={{ marginRight: 8 }} onClick={() => onToggleComplete()}>
           {props.item.isCompleted ? `Not Done` : `Done`}
         </button>
         <button style={{ marginRight: 8 }} onClick={() => onDelete(props.item.id)}>

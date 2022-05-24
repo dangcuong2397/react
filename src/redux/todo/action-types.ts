@@ -18,6 +18,7 @@ interface AddTodo {
   payload: {
     name: string;
     expiresAt?: Date;
+    id?: number;
   };
 }
 interface RemoveTodo {

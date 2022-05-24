@@ -7,14 +7,14 @@ const initialState: TodoState = {
 export function todoReducer(state = initialState, action: TodoActionTypes): TodoState {
   switch (action.type) {
     case ADD_TODO: {
-      const { name, expiresAt } = action.payload;
+      const { name, expiresAt, id } = action.payload;
       const newTodos = [
         {
           name,
           expiresAt,
           createdAt: new Date(),
           updatedAt: new Date(),
-          id: new Date().getUTCMilliseconds(),
+          id: id || new Date().getUTCMilliseconds(),
           isCompleted: false,
         },
         ...state.todos,
